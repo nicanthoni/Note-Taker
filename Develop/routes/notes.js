@@ -1,8 +1,10 @@
 const notes = require('express').Router();
+const { v4: uuid4 } = require('uuid'); // npm pack to give each note a unique id when it's saved
+const { readFromFile, readAndAppend } = require('../helpers/fs');
 // helpers need be created and imported? 
 // FOR READ AND APPEND ^
 
-// helper needed for readfromfile to work?
+
 // GET route to read the db.json file and return all saved notes as JSON
 notes.get('/', (req, res) => {
     readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)))
