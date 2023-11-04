@@ -1,5 +1,4 @@
 // api route
-
 const notes = require('express').Router();
 const { v4: uuid4 } = require('uuid'); // npm pack to give each note a unique id when it's saved
 const { readFromFile, readAndAppend, writeToFile } = require('../helpers/fs');
@@ -11,23 +10,28 @@ const { readFromFile, readAndAppend, writeToFile } = require('../helpers/fs');
 notes.get('/notes', (req, res) => {
     readFromFile('./db/db.json').then((data) => {
         console.log(data);
-        res.json(JSON.parse(data))})
+        res.json(JSON.parse(data))
+    })
 });
 
 // POST route to receive a new note to save on the request body, add it to the db.json file, and then return the new note to the client
 notes.post('/notes', (req, res) => {
-console.log(req.body);
-//create a note body object: title,text, id
-const { title, text, id } = req.body;
-//use writeToFile function to write the new object to db.json
-if (title && text && id) {
-    const noteBody = {
-        title,
-        text,
-        id: uuid4(),
-    };
-writeToFile('./db/db.json', noteBody) =
-}
+    console.log(req.body);
+    //create a note body object: title,text, id
+    const { title, text, id } = req.body;
+    //use writeToFile function to write the new object to db.json
+    if (title && text && id) {
+        const noteBody = {
+            title,
+            text,
+            id: uuid4(),
+        };
+        writeToFile('./db/db.json', noteBody)
+        .then((data) => {
+            console.log(data);
+            res.json(JSON.parse(data));
+        })
+    }
 
 });
 
