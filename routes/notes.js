@@ -19,20 +19,15 @@ notes.post('/notes', (req, res) => {
     console.log(req.body);
     //create a note body object: title,text, id
     const { title, text, id } = req.body;
-    //use writeToFile function to write the new object to db.json
-    if (title && text && id) {
+   
+    if (title && text) {
         const noteBody = {
             title,
             text,
             id: uuid4(),
         };
-        writeToFile('./db/db.json', noteBody)
-        .then((data) => {
-            console.log(data);
-            res.json(JSON.parse(data));
-        })
+        readAndAppend(noteBody, './db/db.json')
     }
-
 });
 
 module.exports = notes;

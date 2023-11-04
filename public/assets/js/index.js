@@ -4,7 +4,7 @@ let noteText;
 let saveNoteBtn;
 let newNoteBtn;
 let noteList;
-console.log('hello');
+
 if (window.location.pathname === '/notes') {
   noteForm = document.querySelector('.note-form');
   noteTitle = document.querySelector('.note-title');
