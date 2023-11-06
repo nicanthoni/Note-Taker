@@ -27,4 +27,4 @@ notes.post('/notes', (req, res) => {
     }
 });
 
-module.exports = notes;
+module.exports = notes; // router
