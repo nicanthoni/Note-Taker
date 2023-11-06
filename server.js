@@ -2,7 +2,6 @@ const express = require('express');
 const path = require('path');
 const api = require('./routes/notes');
 
-// Need to create a custom middleware file/folder, require it above as a const, and app.use(the middleware)?
 
 const PORT = process.env.PORT || 3001;
 
@@ -29,6 +28,3 @@ app.get('*', (req, res) =>
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT}`)
 );
-
-
-// done? middleware needed?
